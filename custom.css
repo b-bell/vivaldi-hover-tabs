@@ -1,0 +1,22 @@
+/* vertical tab hover */
+#tabs-tabbar-container:is(.left, .right) {box-shadow: #0008 0 0 2px, rgb(0 0 0 / 25%) 0px 3px 6px;}
+#tabs-tabbar-container.left, #tabs-tabbar-container.right {position: fixed; top:87px; bottom:22px; z-index:9; clip-path:inset(0 -50px 0 -50px); transition: .15s ease-out .1s !important;}
+#tabs-tabbar-container.left {left:0;}
+#tabs-tabbar-container.right {right:0;}
+
+#tabs-tabbar-container.left:not(:focus-within):not(:hover) {clip-path:inset(0% calc(100% - 30px) 0% 0%); transition: .15s ease-out .5s !important;}
+#tabs-tabbar-container.right:not(:focus-within):not(:hover) {transform: translateX(calc(100% - 32px)); transition: .15s ease-out .5s !important;}
+
+#tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) > div.overflow .tab-strip {animation: ofh 0s .5s forwards !important;}
+@keyframes ofh {to {overflow-y: hidden;}}
+
+/* newtab position */
+#tabs-tabbar-container:is(.left, .right) .newtab {left: 0 !important; width: 100%; transition: width .1s .1s !important;}
+#tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) .newtab {width: 30px; transition: width 0s .5s !important;}
+
+/* optional: reserved inner space for minimized tabbar by only push webpage inward */
+#browser:not(.fullscreen).tabs-left #webview-container {margin-left:30px;}
+#browser:not(.fullscreen).tabs-right #webview-container {margin-right:32px;}
+
+/* Option 1: minimize into parent column */
+#tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) {flex-direction: row;}
